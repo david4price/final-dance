@@ -1,0 +1,109 @@
+.product-item {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 3.5rem 0;
+  background-color: #4b4b4b;
+  border: 3px solid #35004e;
+}
+
+.product-item:hover {
+  border: 3px solid #ACA9BB;
+  background-color: #464362;
+}
+
+.product-item__description {
+  display: flex;
+  flex-direction: column !important;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-flow: column-reverse;
+  justify-content: flex-start;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.product-item__description-container {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 90%;
+  max-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-item h2 {
+  display: flex;
+  color: #3a3a3a;
+  font-size: 1rem;
+  flex: 1;
+  margin: 0 1rem;
+  color: white;
+}
+
+.product-item__button-container-main {
+  flex-direction: column;
+  display: flex !important;
+  justify-content: center !important;
+}
+.product-item__price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #35004e;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0.5rem;
+  border-radius: 12px;
+  width: 5.3rem;
+}
+
+.product-item__button-container button {
+  display: flex;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background-color: #163900;
+  border: 1px solid #000000;
+  padding: 0.7rem;
+  border-radius: 12px;
+  margin-right: 2rem;
+}
+
+.product-item__button-container button:hover,
+.product-item__button-container button:active {
+  background-color: #286800;
+  border-color: #000000;
+}
+
+.product-item__button-container button.alternative {
+  color: #c70404;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.product-item__button-container button.alternative:hover,
+.product-item__button-container button.alternative:active {
+  background-color: #000000;
+}
+
+@media (min-width: 580px) {
+  .product-item__description {
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  .product-item__description h2 {
+    font-size: 1.25rem;
+  }
+
+  .product-item__price {
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+  }
+}

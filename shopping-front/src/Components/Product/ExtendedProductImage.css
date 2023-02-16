@@ -1,0 +1,19 @@
+.ext-product-image {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    height: 15rem;
+    border: 6px solid #000000;
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .ext-small-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5%;
+  }
+  
