@@ -185,3 +185,4 @@ six @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot2/ActiveBuildR
 sqlparse==0.4.3
 tomli==2.0.1
 urllib3==1.26.14
+whitenoise==6.3.0
