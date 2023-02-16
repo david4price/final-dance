@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import './SearchBar.css'
 
 const ProductsList = ({ products, onAddToCart }) => {
+  // search bar that runs locally on the data recieved by the api
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (e) => {

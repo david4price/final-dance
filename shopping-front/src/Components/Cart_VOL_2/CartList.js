@@ -4,6 +4,8 @@ import CartItem from "./CartItem";
 import "./CartList.css";
 
 const CartList = ({ cartItems, onRemoveHandler, onAddHandler, onDeleteHandler }) => {
+  
+  // controlling the cart by toggling it to be closed or open
   const [isEditing, setIsEditing] = useState(false);
 
   const startEditingHandler = () => {

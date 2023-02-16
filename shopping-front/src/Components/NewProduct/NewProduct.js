@@ -4,6 +4,8 @@ import "./NewProduct.css";
 import NewProductForm from "./NewProductForm";
 
 const NewProduct = (props) => {
+
+  // toggoling the from to be open or closed
   const [isEditing, setIsEditing] = useState(false);
 
   const saveProductDataHandler = async (enteredProductData) => {

@@ -4,7 +4,9 @@ import "./CartItem.css";
 import "./CartImage.css";
 import "./extendedCartProduct.css";
 
-const CartItem = ({ cartItems, onRemoveHandler,onAddHandler, onDeleteHandler }) => {
+const CartItem = ({ cartItems, onRemoveHandler, onAddHandler, onDeleteHandler }) => {
+
+  // controlling item view by expanding the view to more options
   const [openProduct, setOpenProduct] = useState(false);
 
   const openProductHandler = () => {
@@ -16,12 +18,10 @@ const CartItem = ({ cartItems, onRemoveHandler,onAddHandler, onDeleteHandler }) 
   };
 
   const productId = cartItems.id;
-  console.log(productId);
-
-  // const [quantity] = useState(1)
 
   const total = cartItems.product.price * cartItems.quantity;
 
+  // two states for when the its open and closed based on the condition 
   return (
     <>
       {!openProduct && (
