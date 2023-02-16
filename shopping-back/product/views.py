@@ -95,3 +95,23 @@ def single_CartItem(request, pk):
         else:
             cart_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT'])
+def single_CartItemAdd(request, pk):
+    try:
+        cart_item = CartItem.objects.get(id=pk)
+    except CartItem.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':   # get single item (product in cart)
+        serializer = CartItemSerializer(cart_item, many=False)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':  # update item (quantity) in cart
+        cart_item.quantity += 1
+        if cart_item.quantity > 0:
+            cart_item.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            cart_item.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)

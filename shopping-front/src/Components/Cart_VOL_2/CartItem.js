@@ -4,7 +4,7 @@ import "./CartItem.css";
 import "./CartImage.css";
 import "./extendedCartProduct.css";
 
-const CartItem = ({ cartItems, onRemoveHandler }) => {
+const CartItem = ({ cartItems, onRemoveHandler,onAddHandler, onDeleteHandler }) => {
   const [openProduct, setOpenProduct] = useState(false);
 
   const openProductHandler = () => {
@@ -28,7 +28,7 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
         <Card className="cart-item">
           <div className="product-image-cart">
             <img
-              className="small-image"
+              className="cart-small-image"
               src={"http://127.0.0.1:8000" + cartItems.product.image}
               alt={cartItems.product.name}
             />
@@ -36,7 +36,7 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
           <div className="cart-item__description">
             <h2>{cartItems.product.name}</h2>
             <button className="astext" onClick={openProductHandler}>
-              More...
+              - Manage -
             </button>
           </div>
           <div className="cart-item__button-container-main">
@@ -48,7 +48,7 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
             <button
               className="cart-item__remove-btn"
               onClick={() => {
-                onRemoveHandler(productId);
+                onDeleteHandler(productId);
               }}
             >
               REMOVE
@@ -58,9 +58,9 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
       )}
       {openProduct && (
         <Card className="ext-cart-item">
-          <div className="product-image-cart">
+          <div className="ext-product-image-cart">
             <img
-              className="small-image"
+              className="ext-small-image"
               src={"http://127.0.0.1:8000" + cartItems.product.image}
               alt={cartItems.product.name}
             />
@@ -68,7 +68,7 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
           <div className="cart-item__description">
             <h2>{cartItems.product.name}</h2>
             <button className="astext" onClick={closeProductHandler}>
-              More...
+              - Close -
             </button>
           </div>
           <div className="cart-item__button-container-main">
@@ -80,13 +80,13 @@ const CartItem = ({ cartItems, onRemoveHandler }) => {
             <button
               className="cart-item__add-btn-sm"
               onClick={() => {
-                onRemoveHandler(productId);
+                onAddHandler(productId);
               }}
             >
               +
             </button>
             <button
-              className="cart-item__remove-btn-sm"
+              className="cart-item__remove-btn"
               onClick={() => {
                 onRemoveHandler(productId);
               }}

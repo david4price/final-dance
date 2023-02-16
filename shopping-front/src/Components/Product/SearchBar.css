@@ -17,3 +17,11 @@ input[type="search"]:focus {
   border-color: #ACA9BB;
   box-shadow: 0 0 23px #746ea6;
 }
+
+
+@media only screen and (max-width: 580px) {
+  input[type="search"] {
+    align-items: stretch;
+    margin-right: 1.5rem;
+  }
+}

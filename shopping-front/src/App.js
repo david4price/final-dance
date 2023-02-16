@@ -8,6 +8,7 @@ import CartList from "./Components/Cart_VOL_2/CartList";
 import NewProduct from "./Components/NewProduct/NewProduct";
 
 import Header from "./Components/Header/Header";
+import MyHeader from "./Components/Header/MyHeader";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -104,6 +105,60 @@ function App() {
     getCartItems();
   };
 
+  const onAddHandler = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/cart-items-add/${productId}/`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: productId }),
+        }
+      );
+      
+      if (!response.ok) {
+        throw new Error("Failed to remove from cart!");
+      }
+      const updatedCart = await response.json();
+      setCartItems(updatedCart);
+    } catch (err) {
+      console.error(err);
+    }
+    const getCartItems = () => {
+      fetch("http://localhost:8000/api/cart-items/")
+        .then((response) => response.json())
+        .then((data) => setCartItems(data));
+    };
+    getCartItems();
+  };
+
+  const onDeleteHandler = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/cart-items/${productId}/`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: productId }),
+        }
+      );
+      
+      if (!response.ok) {
+        throw new Error("Failed to remove from cart!");
+      }
+      const updatedCart = await response.json();
+      setCartItems(updatedCart);
+    } catch (err) {
+      console.error(err);
+    }
+    const getCartItems = () => {
+      fetch("http://localhost:8000/api/cart-items/")
+        .then((response) => response.json())
+        .then((data) => setCartItems(data));
+    };
+    getCartItems();
+  };
+
   return (
     <BrowserRouter>
         <Fragment>
@@ -114,9 +169,12 @@ function App() {
               path="/"
               element={
                 <>
+                  <MyHeader />
                   <CartList
                     cartItems={cartItems}
                     onRemoveHandler={onRemoveHandler}
+                    onAddHandler={onAddHandler}
+                    onDeleteHandler={onDeleteHandler}
                   />
                   <ProductsList
                     className="products"

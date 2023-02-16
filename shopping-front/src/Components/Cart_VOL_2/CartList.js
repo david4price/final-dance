@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CartItem from "./CartItem";
 import "./CartList.css";
 
-const CartList = ({ cartItems, onRemoveHandler }) => {
+const CartList = ({ cartItems, onRemoveHandler, onAddHandler, onDeleteHandler }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const startEditingHandler = () => {
@@ -37,6 +37,8 @@ const CartList = ({ cartItems, onRemoveHandler }) => {
               key={myitem.id}
               cartItems={myitem}
               onRemoveHandler={onRemoveHandler}
+              onAddHandler={onAddHandler}
+              onDeleteHandler={onDeleteHandler}
             />
           ))}
           <div className="cart-item__total">Total: ₪{subtotal.toFixed(2)}</div>

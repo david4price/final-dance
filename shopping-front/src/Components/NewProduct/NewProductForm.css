@@ -4,6 +4,8 @@
     gap: 1rem;
     margin-bottom: 1rem;
     text-align: left;
+    align-items: center !important;
+    margin-left: 3rem;
   }
   
   .new-product__control label {

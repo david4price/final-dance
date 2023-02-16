@@ -18,12 +18,12 @@
   display: flex;
   flex-direction: column !important;
   gap: 1rem;
-  align-items: flex-end;
-  flex-flow: column-reverse;
-  justify-content: flex-start;
+  align-items: flex-end !important;
+  justify-content: flex-start !important;
   flex: 1;
   font-size: 16px;
   font-weight: 500;
+  align-items: center !important;
 }
 
 .product-item__description-container {
@@ -57,7 +57,7 @@
   border: 1px solid rgb(0, 0, 0);
   padding: 0.5rem;
   border-radius: 12px;
-  width: 5.3rem;
+  width: 7.15rem;
 }
 
 .product-item__button-container button {
@@ -70,7 +70,7 @@
   border: 1px solid #000000;
   padding: 0.7rem;
   border-radius: 12px;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .product-item__button-container button:hover,
@@ -90,20 +90,61 @@
   background-color: #000000;
 }
 
-@media (min-width: 580px) {
-  .product-item__description {
-    flex-direction: column !important;
+@media only screen and (max-width: 600px) {
+  .product-item {
+    max-width: 80%;
+    display: grid;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  .product-item__description {
+    display: flex;
+    flex-direction: column !important;
+    gap: 1rem;
+    align-items: center;
+    flex-flow: column-reverse;
     justify-content: flex-start;
     flex: 1;
+    font-size: 12px;
+    font-weight: 500;
   }
 
   .product-item__description h2 {
-    font-size: 1.25rem;
+    display: flex;
+    color: #3a3a3a;
+    font-size: 1rem;
+    flex: 1;
+    margin: 0 1rem;
+    margin-top: 0.5rem;
+    color: white;
   }
 
   .product-item__price {
-    font-size: 1.25rem;
-    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #35004e;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 0.5rem;
+    border-radius: 12px;
+    width: 5.3rem;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .product-item__button-container button {
+    display: flex;
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: 6.5rem;
+    color: white;
+    background-color: #163900;
+    border: 1px solid #000000;
+    padding: 0.7rem;
+    border-radius: 12px;
+    margin:auto;
   }
 }

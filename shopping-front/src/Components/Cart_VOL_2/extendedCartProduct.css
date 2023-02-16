@@ -6,11 +6,10 @@
   padding: 1rem;
   margin: 3.5rem 0;
   background-color: #4b4b4b;
-  border: 3px solid #35004e;
+  border: 3px solid rgb(246, 228, 37);
 }
 
 .ext-cart-item:hover {
-  border: 3px solid #aca9bb;
   background-color: #464362;
 }
 
@@ -49,6 +48,7 @@
   display: flex !important;
   justify-content: center !important;
 }
+
 .ext-cart-item__price {
   font-size: 1rem;
   font-weight: bold;
@@ -59,35 +59,6 @@
   border-radius: 12px;
   width: 5.3rem;
 }
-
-/* .ext-cart-item__button-container button {
-  display: flex;
-  margin-top: 10px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  background-color: #163900;
-  border: 1px solid #000000;
-  padding: 0.7rem;
-  border-radius: 12px;
-}
-
-.ext-cart-item__button-container button:hover,
-.ext-cart-item__button-container button:active {
-  background-color: #286800;
-  border-color: #000000;
-} */
-
-/* .ext-cart-item__button-container button.alternative {
-  color: #c70404;
-  border-color: transparent;
-  background-color: transparent;
-}
-
-.ext-cart-item__button-container button.alternative:hover,
-.ext-cart-item__button-container button.alternative:active {
-  background-color: #000000;
-} */
 
 .astext {
   background: none !important;
@@ -100,7 +71,7 @@
 }
 
 .astext:hover {
-    color: #aca9bb !important;
+  color: #aca9bb !important;
 }
 
 .cart-item__add-btn-sm {
@@ -116,33 +87,15 @@
   margin-top: 0.5rem;
 }
 
-.cart-item__add-btn-sm button:hover,
-.cart-item__add-btn-sm button:active {
+.cart-item__add-btn-sm:hover{
   background-color: #286800 !important;
   border-color: #000000 !important;
 }
 
-.cart-item__remove-btn-sm {
-  font: inherit !important;
-  font-weight: bold !important;
-  cursor: pointer !important;
-  padding: 1rem 2rem !important;
-  border: 1px solid #000000 !important;
-  background-color: #9f2323 !important;
-  color: rgb(255, 255, 255) !important;
-  border-radius: 12px !important;
-  margin-left: 1rem !important;
-  margin-top: 0.5rem;
-}
-
-.cart-item__remove-btn-sm button:hover,
-.cart-item__remove-btn-sm button:active {
-  background-color: #d70606 !important; 
-  border-color: #000000 !important;
-}
-
-
-@media (min-width: 580px) {
+@media only screen and (max-width: 600px) {
+  .ext-cart-item {
+    display: grid;
+  }
   .ext-cart-item__description {
     flex-direction: column !important;
     align-items: center;
@@ -159,4 +112,3 @@
     padding: 0.5rem 1.5rem;
   }
 }
-
