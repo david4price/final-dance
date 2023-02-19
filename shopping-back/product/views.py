@@ -50,10 +50,18 @@ def single_product(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST'])
-def cartItems(request):
+@api_view(['GET', 'POST', 'DELETE'])
+def cartItems(request, cart_item_id=None):
     # get cart items
     if request.method == 'GET':
+        if cart_item_id:
+            try:
+                cart_item = CartItem.objects.get(id=cart_item_id)
+            except CartItem.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            serializer = CartItemSerializer(cart_item)
+            return Response(serializer.data)
+
         items = CartItem.objects.all()
         serializer = CartItemSerializer(items, many=True)
         return Response(serializer.data)
@@ -66,27 +74,26 @@ def cartItems(request):
         except Product.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        # Check if the product is archived
-        if product.archived:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": "Product is archived"})
-
         cart, created = Cart.objects.get_or_create()
         quantity = request.data.get('quantity')
-
-        # Check if the cart item exists and if the product is archived
-        try:
-            cart_item = CartItem.objects.get(cart=cart, product=product)
-            if product.archived:
-                cart_item.delete()
-                return Response(status=status.HTTP_200_OK, data={"message": "Cart item deleted"})
+        cart_item, created = CartItem.objects.get_or_create(
+            cart=cart, product=product)
+        if not created:
             cart_item.quantity += int(quantity)
-        except CartItem.DoesNotExist:
-            if product.archived:
-                return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": "Product is archived"})
-            cart_item = CartItem(cart=cart, product=product,
-                                 quantity=int(quantity))
+        else:
+            cart_item.quantity = int(quantity)
         cart_item.save()
         return Response(status=status.HTTP_201_CREATED)
+
+    # delete a cart item
+    elif request.method == 'DELETE':
+        try:
+            cart_item = CartItem.objects.get(id=cart_item_id)
+        except CartItem.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        cart_item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
