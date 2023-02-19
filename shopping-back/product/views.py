@@ -30,11 +30,11 @@ def single_product(request, pk):
     except Product.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    # get product  
+    # get product
     if request.method == 'GET':
         serializer = ProductSerializer(product, many=False)
         return Response(serializer.data)
-    
+
     # archive product(not really deleting it)
     if request.method == 'DELETE':
         product.archived = True
@@ -48,6 +48,20 @@ def single_product(request, pk):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def archive_Product(request, pk):
+    try:
+        cart_item = CartItem.objects.get(id=pk)
+    except CartItem.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    # archive a single product
+    if request.method == 'PUT':
+        cart_item.archived = True
+        cart_item.save()
+        return Response(status=status.HTTP_200_OK)
 
 
 @api_view(['GET', 'POST'])
@@ -105,6 +119,7 @@ def single_CartItem(request, pk):
             cart_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 @api_view(['PUT'])
 def single_CartItemAdd(request, pk):
     try:
@@ -113,7 +128,7 @@ def single_CartItemAdd(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     # increase single product quantity in cart
-    if request.method == 'PUT':  # update item (quantity) in cart
+    if request.method == 'PUT':
         cart_item.quantity += 1
         if cart_item.quantity > 0:
             cart_item.save()
