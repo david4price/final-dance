@@ -50,23 +50,6 @@ def single_product(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
-def archive_Product(request, pk):
-    try:
-        product = Product.objects.get(id=pk)
-    except Product.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    # archive a single product
-    if request.method == 'PUT':
-        serializer = ProductSerializer(instance=product, data=request.data)
-        if serializer.is_valid():
-            serializer.archive = True
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 @api_view(['GET', 'POST'])
 def cartItems(request):
     # get cart items
