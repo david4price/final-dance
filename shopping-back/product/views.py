@@ -66,16 +66,27 @@ def cartItems(request):
         except Product.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+        # Check if the product is archived
+        if product.archived:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": "Product is archived"})
+
         cart, created = Cart.objects.get_or_create()
         quantity = request.data.get('quantity')
-        cart_item, created = CartItem.objects.get_or_create(
-            cart=cart, product=product)
-        if not created:
+
+        # Check if the cart item exists and if the product is archived
+        try:
+            cart_item = CartItem.objects.get(cart=cart, product=product)
+            if product.archived:
+                cart_item.delete()
+                return Response(status=status.HTTP_200_OK, data={"message": "Cart item deleted"})
             cart_item.quantity += int(quantity)
-        else:
-            cart_item.quantity = int(quantity)
+        except CartItem.DoesNotExist:
+            if product.archived:
+                return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": "Product is archived"})
+            cart_item = CartItem(cart=cart, product=product,
+                                 quantity=int(quantity))
         cart_item.save()
-        return Response(status=status.HTTP_201_CREATEgiD)
+        return Response(status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
