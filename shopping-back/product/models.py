@@ -40,4 +40,4 @@ class CartItem(models.Model):
         ordering = ['-updated', '-created']
 
     def __str__(self):
-        return f"{self.item} - {self.quantity}"
+        return f"{self.product} - {self.quantity}"
