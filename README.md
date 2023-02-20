@@ -20,19 +20,19 @@ Once the server is running, you can access the API by visiting http://localhost:
 
 The following endpoints are available:
 
-## Products
+### Products
 1. GET /products/ - Retrieve a list of all products
 2. GET /products/{pk}/ - Retrieve a single product by ID
 3. POST /products/ - Create a new product
 4. PUT /products/{pk}/ - Update a single product by ID
 5. DELETE /products/{pk}/ - Archive a single product by ID
 
-## Cart
+### Cart
 1. GET /cart-items/ - Retrieve a list of all cart items
 2. GET /cart-items/{cart_item_id}/ - Retrieve a single cart item by ID
 3. POST /cart-items/ - Add a product to the cart
 4. DELETE /cart-items/{cart_item_id}/ - Delete a cart item by ID
-## Cart Item
+### Cart Item
 1. GET /cart-item/{pk}/ - Retrieve a single cart item by ID
 2. PUT /cart-item/{pk}/ - Decrease the quantity of a single product in the cart by 1
 3. PUT /cart-item/{pk}/add/ - Increase the quantity of a single product in the cart by 1
