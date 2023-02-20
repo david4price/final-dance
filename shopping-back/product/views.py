@@ -140,3 +140,10 @@ def single_CartItemAdd(request, pk):
         else:
             cart_item.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def handler404(request, exception=None, template_name='404.html'):
+    return render(request, '404.html', status=404)
+
+def handler500(request, exception=None, template_name='500.html'):
+    return render(request, '500.html', status=500)
